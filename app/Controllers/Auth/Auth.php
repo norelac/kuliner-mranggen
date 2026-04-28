@@ -42,11 +42,10 @@ class Auth extends BaseController
         return redirect()->back()->with('error', 'Email atau password salah');
     }
 
-    public function register()
+        public function register()
     {
         return view('auth/register');
     }
-
     public function registerProcess()
     {
         $userModel = new UserModel();

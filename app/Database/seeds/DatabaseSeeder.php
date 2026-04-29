@@ -16,6 +16,6 @@ class DatabaseSeeder extends Seeder
         $this->call('KulinerGambarSeeder');
         $this->call('ReviewSeeder');
         $this->call('FavoritSeeder');
-        $this->call('LaporanSeeder');
+        $this->call('LaporanSeeder');       
     }
 }

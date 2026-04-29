@@ -18,6 +18,6 @@ class CreateTag extends Migration
 
     public function down()
     {
-        //
+        $this->forge->dropTable('tag', true);
     }
 }

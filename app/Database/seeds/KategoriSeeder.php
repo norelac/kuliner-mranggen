@@ -8,11 +8,24 @@ class KategoriSeeder extends Seeder
 {
     public function run()
     {
-        $this->db->table('kategori')->insertBatch([
+        $data = [
             ['nama' => 'Makanan Berat'],
             ['nama' => 'Cafe'],
             ['nama' => 'Street Food'],
-            ['nama' => 'Minuman']
-        ]);
+            ['nama' => 'Minuman'],
+            ['nama' => 'Dessert'],
+        ];
+
+        foreach ($data as $item) {
+
+            $exists = $this->db->table('kategori')
+                ->where('nama', $item['nama'])
+                ->get()
+                ->getRow();
+
+            if (!$exists) {
+                $this->db->table('kategori')->insert($item);
+            }
+        }
     }
 }

@@ -22,6 +22,6 @@ class CreateKulinerTag extends Migration
 
     public function down()
     {
-        //
+        $this->forge->dropTable('kuliner_tag', true);
     }
 }

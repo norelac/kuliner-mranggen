@@ -22,6 +22,6 @@ class CreateKulinerGambar extends Migration
 
     public function down()
     {
-        //
+        $this->forge->dropTable('kuliner_gambar', true);
     }
 }

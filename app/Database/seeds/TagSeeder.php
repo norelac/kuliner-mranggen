@@ -8,12 +8,22 @@ class TagSeeder extends Seeder
 {
     public function run()
     {
-        $this->db->table('tag')->insertBatch([
+        $data = [
             ['nama' => 'Murah'],
-            ['nama' => 'Halal'],
-            ['nama' => 'WiFi'],
-            ['nama' => 'AC'],
-            ['nama' => 'Parkir']
-        ]);
+            ['nama' => 'Enak'],
+            ['nama' => 'Viral'],
+            ['nama' => 'Pedas'],
+            ['nama' => 'Instagramable'],
+        ];
+
+        foreach ($data as $item) {
+            $exists = $this->db->table('tag')
+                ->where('nama', $item['nama'])
+                ->get()->getRow();
+
+            if (!$exists) {
+                $this->db->table('tag')->insert($item);
+            }
+        }
     }
 }

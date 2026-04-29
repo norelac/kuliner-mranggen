@@ -8,13 +8,16 @@ class LaporanSeeder extends Seeder
 {
     public function run()
     {
-        $this->db->table('laporan')->insertBatch([
+        $data = [
             [
                 'user_id' => 2,
                 'kuliner_id' => 1,
-                'alasan' => 'Tempat tutup',
-                'status' => 'pending'
-            ]
-        ]);
+                'pesan' => 'Tempat tutup permanen'
+            ],
+        ];
+
+        foreach ($data as $item) {
+            $this->db->table('laporan')->insert($item);
+        }
     }
 }

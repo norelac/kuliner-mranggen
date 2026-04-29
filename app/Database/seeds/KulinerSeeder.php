@@ -8,37 +8,53 @@ class KulinerSeeder extends Seeder
 {
     public function run()
     {
-        $this->db->table('kuliner')->insertBatch([
+        $data = [
             [
-                'user_id' => 2,
-                'kategori_id' => 3,
                 'nama' => 'Bakso Pak Kardi',
                 'alamat' => 'Bandungrejo',
-                'deskripsi' => 'Spesialis bakso di Mranggen',
-                'latitude' => -6.98,
-                'longitude' => 110.40,
-                'status' => 'approved'
-            ],
-            [
-                'user_id' => 2,
-                'kategori_id' => 2,
-                'nama' => 'RM Padang Nan Sero',
-                'alamat' => 'Bandungrejo',
-                'deskripsi' => 'Salah satu RM Padang legendaris di kawasan Mranggen',
-                'latitude' => -6.99,
-                'longitude' => 110.42,
-                'status' => 'approved'
-            ],
-            [
-                'user_id' => 3,
+                'deskripsi' => 'Bakso legendaris di Mranggen',
                 'kategori_id' => 1,
+                'user_id' => 3
+            ],
+            [
                 'nama' => 'Bebek Bakar Aminjoyo',
                 'alamat' => 'Kauman',
-                'deskripsi' => 'Bebeknya juicy',
-                'latitude' => -6.97,
-                'longitude' => 110.41,
-                'status' => 'approved'
-            ]
-        ]);
+                'deskripsi' => 'Bebeknya juicy banget',
+                'kategori_id' => 1,
+                'user_id' => 3
+            ],
+            [
+                'nama' => 'Semesta Cafe',
+                'alamat' => 'Kembangarum',
+                'deskripsi' => 'Tempat nongkrong view sawah',
+                'kategori_id' => 2,
+                'user_id' => 3
+            ],
+            [
+                'nama' => 'Es Dawet Hitam',
+                'alamat' => 'Brumbung',
+                'deskripsi' => 'Minuman segar tradisional',
+                'kategori_id' => 5,
+                'user_id' => 4
+            ],
+            [
+                'nama' => 'Bakso Shobat',
+                'alamat' => 'Bandungrejo',
+                'deskripsi' => 'Bakso & Mie Ayam Andalan',
+                'kategori_id' => 1,
+                'user_id' => 4
+            ],
+        ];
+
+        foreach ($data as $item) {
+            $exists = $this->db->table('kuliner')
+                ->where('nama', $item['nama'])
+                ->get()->getRow();
+
+            if (!$exists) {
+                $this->db->table('kuliner')->insert($item);
+            }
+        }
     }
 }
+

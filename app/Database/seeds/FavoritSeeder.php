@@ -8,11 +8,19 @@ class FavoritSeeder extends Seeder
 {
     public function run()
     {
-        $this->db->table('favorit')->insertBatch([
-            [
-                'user_id' => 2,
-                'kuliner_id' => 1
-            ]
-        ]);
+        $data = [
+            ['user_id' => 3, 'kuliner_id' => 1],
+            ['user_id' => 3, 'kuliner_id' => 3],
+        ];
+
+        foreach ($data as $item) {
+            $exists = $this->db->table('favorit')
+                ->where($item)
+                ->get()->getRow();
+
+            if (!$exists) {
+                $this->db->table('favorit')->insert($item);
+            }
+        }
     }
 }

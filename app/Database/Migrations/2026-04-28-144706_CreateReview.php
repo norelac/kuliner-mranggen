@@ -25,6 +25,6 @@ class CreateReview extends Migration
 
     public function down()
     {
-        //
+        $this->forge->dropTable('review', true);
     }
 }

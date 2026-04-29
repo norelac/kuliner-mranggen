@@ -8,10 +8,25 @@ class KulinerTagSeeder extends Seeder
 {
     public function run()
     {
-        $this->db->table('kuliner_tag')->insertBatch([
-            ['kuliner_id' => 1, 'tag_id' => 1],
-            ['kuliner_id' => 1, 'tag_id' => 2],
-            ['kuliner_id' => 2, 'tag_id' => 3]
-        ]);
+        $kuliners = $this->db->table('kuliner')->get()->getResult();
+        $tags = $this->db->table('tag')->get()->getResult();
+
+        foreach ($kuliners as $kuliner) {
+            foreach ($tags as $tag) {
+
+                $exists = $this->db->table('kuliner_tag')
+                    ->where('kuliner_id', $kuliner->id)
+                    ->where('tag_id', $tag->id)
+                    ->get()
+                    ->getRow();
+
+                if (!$exists) {
+                    $this->db->table('kuliner_tag')->insert([
+                        'kuliner_id' => $kuliner->id,
+                        'tag_id' => $tag->id,
+                    ]);
+                }
+            }
+        }
     }
 }

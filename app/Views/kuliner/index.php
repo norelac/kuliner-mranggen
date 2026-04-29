@@ -18,9 +18,9 @@
             <?php foreach ($kuliner as $item): ?>
                 <div class="card mb-3">
                     <div class="card-body">
-                        <h3 class="card-title"><?= esc($item['nama']); ?></h3>
-                        <p class="card-text"><strong>Alamat:</strong> <?= esc($item['alamat']); ?></p>
-                        <p class="card-text"><strong>Deskripsi:</strong> <?= esc($item['deskripsi']); ?></p>
+                        <h3 class="card-title"><?= esc((string) $item['nama']) ?></h3>
+                        <p class="card-text"><strong>Alamat:</strong> <?= esc((string) $item['alamat']) ?></p>
+                        <p class="card-text"><strong>Deskripsi:</strong> <?= esc((string) $item['deskripsi']) ?></p>
                     </div>
                 </div>
             <?php endforeach; ?>

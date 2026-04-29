@@ -10,10 +10,10 @@ class Dashboard extends BaseController
     {
         $db = \Config\Database::connect();
 
-        $data['totalKuliner'] = $db->table('kuliner')->countAllResults();
-        $data['totalUser'] = $db->table('users')->countAllResults();
-        $data['totalReview'] = $db->table('review')->countAllResults();
-        $data['totalKategori'] = $db->table('kategori')->countAllResults();
+        $data['total_kuliner'] = $db->table('kuliner')->countAllResults();
+        $data['total_user'] = $db->table('users')->countAllResults();
+        $data['total_review'] = $db->table('review')->countAllResults();
+        $data['total_kategori'] = $db->table('kategori')->countAllResults();
 
         return view('admin/dashboard', $data);
     }
